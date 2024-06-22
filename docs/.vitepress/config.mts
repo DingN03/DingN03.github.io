@@ -7,7 +7,7 @@ import { defineConfig, type DefaultTheme } from 'vitepress'
 export default defineConfig({
     title: "DN Blog",
     description: "DN's Blog",
-    base: '/blog/',
+    // base: '/blog/',
 
     lastUpdated: true,
     cleanUrls: true,
