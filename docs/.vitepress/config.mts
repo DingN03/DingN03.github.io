@@ -10,7 +10,7 @@ export default defineConfig({
     base: '/blog/',
 
     lastUpdated: true,
-    cleanUrls: true,
+    contributors: true,
     metaChunk: true,
 
     head:[
