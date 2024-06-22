@@ -3,9 +3,7 @@
 layout: home
 
 hero:
-  name: "DN Blog Project"
   text: "DN's Blog"
-  tagline: My great project tagline
   actions:
     - theme: brand
       text: Markdown Examples
@@ -17,6 +15,7 @@ hero:
 features:
   - title: Feature A
     details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+    link: /feature-a
   - title: Feature B
     details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
   - title: Feature C
