@@ -7,9 +7,9 @@ import { defineConfig, type DefaultTheme } from 'vitepress'
 export default defineConfig({
     title: "DN Blog",
     description: "DN's Blog",
-    base: '/blog/',
 
     lastUpdated: true,
+    cleanUrls: true,
     metaChunk: true,
 
     head:[
@@ -80,18 +80,18 @@ function nav() {
             link: '/zh/reference/site-config',
             activeMatch: '/zh/reference/'
         },
-        {
-            items: [
-                {
-                    text: '更新日志',
-                    link: 'https://github.com/vuejs/vitepress/blob/main/CHANGELOG.md'
-                },
-                {
-                    text: '参与贡献',
-                    link: 'https://github.com/vuejs/vitepress/blob/main/.github/contributing.md'
-                }
-            ]
-        }
+        // {
+        //     items: [
+        //         {
+        //             text: '更新日志',
+        //             link: 'https://github.com/vuejs/vitepress/blob/main/CHANGELOG.md'
+        //         },
+        //         {
+        //             text: '参与贡献',
+        //             link: 'https://github.com/vuejs/vitepress/blob/main/.github/contributing.md'
+        //         }
+        //     ]
+        // }
     ]
 }
 
@@ -141,38 +141,38 @@ function sidebar(): DefaultTheme.SidebarItem[] {
     ]
 }
 
-function sidebarReference(): DefaultTheme.SidebarItem[] {
-    return [
-        {
-            text: '参考',
-            items: [
-                { text: '站点配置', link: 'site-config' },
-                { text: 'frontmatter 配置', link: 'frontmatter-config' },
-                { text: '运行时 API', link: 'runtime-api' },
-                { text: 'CLI', link: 'cli' },
-                {
-                    text: '默认主题',
-                    base: '/zh/reference/default-theme-',
-                    items: [
-                        { text: '概览', link: 'config' },
-                        { text: '导航栏', link: 'nav' },
-                        { text: '侧边栏', link: 'sidebar' },
-                        { text: '主页', link: 'home-page' },
-                        { text: '页脚', link: 'footer' },
-                        { text: '布局', link: 'layout' },
-                        { text: '徽章', link: 'badge' },
-                        { text: '团队页', link: 'team-page' },
-                        { text: '上下页链接', link: 'prev-next-links' },
-                        { text: '编辑链接', link: 'edit-link' },
-                        { text: '最后更新时间戳', link: 'last-updated' },
-                        { text: '搜索', link: 'search' },
-                        { text: 'Carbon Ads', link: 'carbon-ads' }
-                    ]
-                }
-            ]
-        }
-    ]
-}
+// function sidebarReference(): DefaultTheme.SidebarItem[] {
+//     return [
+//         {
+//             text: '参考',
+//             items: [
+//                 { text: '站点配置', link: 'site-config' },
+//                 { text: 'frontmatter 配置', link: 'frontmatter-config' },
+//                 { text: '运行时 API', link: 'runtime-api' },
+//                 { text: 'CLI', link: 'cli' },
+//                 {
+//                     text: '默认主题',
+//                     base: '/zh/reference/default-theme-',
+//                     items: [
+//                         { text: '概览', link: 'config' },
+//                         { text: '导航栏', link: 'nav' },
+//                         { text: '侧边栏', link: 'sidebar' },
+//                         { text: '主页', link: 'home-page' },
+//                         { text: '页脚', link: 'footer' },
+//                         { text: '布局', link: 'layout' },
+//                         { text: '徽章', link: 'badge' },
+//                         { text: '团队页', link: 'team-page' },
+//                         { text: '上下页链接', link: 'prev-next-links' },
+//                         { text: '编辑链接', link: 'edit-link' },
+//                         { text: '最后更新时间戳', link: 'last-updated' },
+//                         { text: '搜索', link: 'search' },
+//                         { text: 'Carbon Ads', link: 'carbon-ads' }
+//                     ]
+//                 }
+//             ]
+//         }
+//     ]
+// }
 
 export const search: DefaultTheme.AlgoliaSearchOptions['locales'] = {
     zh: {
