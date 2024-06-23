@@ -13,6 +13,8 @@ export default defineConfig({
     cleanUrls: true,
     metaChunk: true,
 
+    ignoreDeadLinks: true,
+
     head:[
         ['link', { rel: 'icon', type: 'image/png', href: '/vitepress-logo-mini.png' }],
     ],
@@ -69,10 +71,30 @@ export default defineConfig({
     }
 })
 
+
+function readFileSync(file: string): any[] {
+    const dirs = fs.readdirSync(file)
+    return dirs.map(dir => {
+        if (dir.match(/\.md$/)) {
+            return {
+                fileName: dir.substring(dir.lastIndexOf("\/")+1, dir.lastIndexOf(".")),
+                fileType: 'file',
+                filePath: file + '/' + dir
+            }
+        } else {
+            return {
+                fileName: dir,
+                fileType: 'dir',
+                filePath: file + '/' + dir,
+                children: readFileSync(file + '/' + dir)
+            }
+        }
+    })
+}
+
+
 function nav(fileList: any[]) {
-
     return fileListToNav(fileList)
-
 }
 
 // 读取文件列表并转换为导航结构
@@ -114,9 +136,7 @@ function fileListToSidebar(fileList: any[]): SidebarItem[]  {
 
 function sidebar(fileList: any[]): SidebarMulti {
 
-    const sidebarMulti = {
-
-    }
+    const sidebarMulti = {}
 
     fileListToSidebar(fileList).forEach(item => {
         sidebarMulti[item.base] = {
@@ -150,23 +170,4 @@ function sidebar(fileList: any[]): SidebarMulti {
 }
 
 
-function readFileSync(file: string): any[] {
-    const dirs = fs.readdirSync(file)
-    return dirs.map(dir => {
-        if (dir.match(/\.md$/)) {
-            return {
-                fileName: dir.substring(dir.lastIndexOf("\/")+1, dir.lastIndexOf(".")),
-                fileType: 'file',
-                filePath: file + '/' + dir
-            }
-        } else {
-            return {
-                fileName: dir,
-                fileType: 'dir',
-                filePath: file + '/' + dir,
-                children: readFileSync(file + '/' + dir)
-            }
-        }
-    })
-}
 

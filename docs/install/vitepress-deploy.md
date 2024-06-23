@@ -1,5 +1,11 @@
 # 部署 VitePress 到 GitHub Pages
 
+> [!TIP] 注意
+> 
+> 本教程假设你已经安装了 Node.js 环境，并且熟悉 Git 命令。
+> 
+> 在提交仓库前请运行 `npm run docs:build` q命令，确保文档在本地构建成功。
+
 ## 创建github仓库
 
 首先，你需要创建一个 GitHub 仓库，用来存放你的 VitePress 文档。
