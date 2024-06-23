@@ -11,10 +11,10 @@ hero:
   actions:
     - theme: brand
       text: 命令大全
-      link: /zh/guide/what-is-vitepress
+      link: /articles/常用命令/JavaScript/npm
     - theme: alt
       text: 我也来一个？
-      link: /zh/guide/getting-started
+      link: /install/vitepress-install
     - theme: alt
       text: 官方教程
       link: https://vitepress.dev/zh/

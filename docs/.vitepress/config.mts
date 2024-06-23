@@ -92,25 +92,7 @@ function fileListToNav(fileList: any[]): NavItemWithLink[] | NavItemWithChildren
     })
 }
 
-function readFileSync(file: string): any[] {
-    const dirs = fs.readdirSync(file)
-    return dirs.map(dir => {
-        if (dir.match(/\.md$/)) {
-            return {
-                fileName: dir.substring(dir.lastIndexOf("\/")+1, dir.lastIndexOf(".")),
-                fileType: 'file',
-                filePath: file + '/' + dir
-            }
-        } else {
-            return {
-                fileName: dir,
-                fileType: 'dir',
-                filePath: file + '/' + dir,
-                children: readFileSync(file + '/' + dir)
-            }
-        }
-    })
-}
+
 
 function fileListToSidebar(fileList: any[]): SidebarItem[]  {
     return fileList.map(file => {
@@ -143,7 +125,48 @@ function sidebar(fileList: any[]): SidebarMulti {
         }
     })
 
+    sidebarMulti['/install/'] = [
+        {
+            text: 'VitePress 安装指南',
+            base: '/install/vitepress-',
+            items: [
+                {
+                    text: '安装',
+                    link: 'install'
+                },
+                {
+                    text: '配置',
+                    link: 'config'
+                },
+                {
+                    text: '部署',
+                    link: 'deploy'
+                },
+            ]
+        }
+   ]
+
     return sidebarMulti
 }
 
+
+function readFileSync(file: string): any[] {
+    const dirs = fs.readdirSync(file)
+    return dirs.map(dir => {
+        if (dir.match(/\.md$/)) {
+            return {
+                fileName: dir.substring(dir.lastIndexOf("\/")+1, dir.lastIndexOf(".")),
+                fileType: 'file',
+                filePath: file + '/' + dir
+            }
+        } else {
+            return {
+                fileName: dir,
+                fileType: 'dir',
+                filePath: file + '/' + dir,
+                children: readFileSync(file + '/' + dir)
+            }
+        }
+    })
+}
 
