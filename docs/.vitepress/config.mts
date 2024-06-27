@@ -106,8 +106,9 @@ function fileListToNav(fileList: any[]): NavItemWithLink[] | NavItemWithChildren
                 items: fileListToNav(file.children)
             }
         } else {
+            const fileName = file.fileName.indexOf('_') !== 0? file.fileName.slice( file.fileName.indexOf('_')+1) : file.fileName
             return {
-                text: file.fileName,
+                text: fileName,
                 link: file.filePath.replace('./docs/articles', '/articles').replace('.md', '')
             }
         }
@@ -126,8 +127,9 @@ function fileListToSidebar(fileList: any[]): SidebarItem[]  {
                 items: fileListToSidebar(file.children)
             }
         } else {
+            const fileName = file.fileName.indexOf('_') !== 0? file.fileName.slice( file.fileName.indexOf('_')+1) : file.fileName
             return {
-                text: file.fileName,
+                text: fileName,
                 link: file.fileName
             }
         }
