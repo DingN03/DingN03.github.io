@@ -31,13 +31,14 @@ sed -i 's/debian/node2/g' /etc/hosts
 [kubeadm init官方参数文档](https://kubernetes.io/zh-cn/docs/reference/setup-tools/kubeadm/kubeadm-init/)
 - 使用 `kubeadm init` 命令初始化 master 节点：
 ```bash
-kubeadm init 
+kubeadm init --skip-phases=addon/kube-proxy
 ```
+> --skip-phases=addon/kube-proxy 跳过 `kube-proxy` 的安装，因为我们不需要用到 `kube-proxy`
 
 初始化完成后，会输出 `kubeadm join` 命令，我们需要把这个命令先保存下来，后续会使用到：
 ```bash
-kubeadm join 192.168.1.131:6443 --token owribv.7rm0kesin0h2yup6 \
-        --discovery-token-ca-cert-hash sha256:e46e6bbeb2b44ad994ff48e352a29a78dbe5c17c97048bba252fd8342ecd71b2 
+kubeadm join 192.168.1.130:6443 --token ice2m2.jdrgj8dbj5ijav76 \
+        --discovery-token-ca-cert-hash sha256:1822cc0392e40fe7f1166fb87bef33c4224515d0ba428d995b915f48557f95f5 
 ```
 
 这时我们可以通过 `kubectl get pods -A` 查看所有的 `pod`：
@@ -139,8 +140,8 @@ kube-system   cilium-v9h96                       1/1     Running   0          26
 ## 其他节点 {#other-nodes}
 其他节点直接运行主节点初始化完成后给出的 join 命令即可加入集群。
 ```bash
-kubeadm join 192.168.1.131:6443 --token owribv.7rm0kesin0h2yup6 \
-        --discovery-token-ca-cert-hash sha256:e46e6bbeb2b44ad994ff48e352a29a78dbe5c17c97048bba252fd8342ecd71b2 
+kubeadm join 192.168.1.130:6443 --token ice2m2.jdrgj8dbj5ijav76 \
+        --discovery-token-ca-cert-hash sha256:1822cc0392e40fe7f1166fb87bef33c4224515d0ba428d995b915f48557f95f5 
 ```
 由于从节点没有进行`kubectl` 配置，所以无法使用 `kubectl` 命令查看集群状态。
 
