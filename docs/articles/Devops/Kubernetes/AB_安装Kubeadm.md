@@ -76,6 +76,7 @@ unset https_proxy
 
 > [!tip] 这里完成后可以给虚拟机打快照
 
+
 ## 总结
 至此，Kubernetes 集群的安装准备工作已经完成。
 
