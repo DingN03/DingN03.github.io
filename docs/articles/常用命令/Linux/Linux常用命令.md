@@ -53,3 +53,20 @@ echo $<variable_name>
 ```bash
 journalctl -u <unit_name>
 ```
+
+变更系统名和本地域名（hostname）
+```shell
+hostnamectl set-hostname <主机名>
+```
+
+变更主机时间
+> Ubuntu24默认时区不是上海，需要手动变更
+
+:::code-group
+```shell[变更时区]
+dpkg-reconfigure tzdata
+```
+```shell[查看当前时区]
+timedatectl 
+```
+:::
