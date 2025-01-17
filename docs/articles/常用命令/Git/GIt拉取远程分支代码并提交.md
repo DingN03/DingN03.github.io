@@ -18,8 +18,13 @@ git add <修改的文件>
 git commit -m "<修改说明>"
 ```
 
-# 推送代码
-git push origin <本地分支>:<远程分支>
+## 推送代码
 
-## 注意
-1. `git pull` 或 `git push` 后续格式都是基于 <source>:<target> 的格式，也就是 <源变更分支>:<目标变更分支>
+```shell
+git push origin <本地分支>:<远程分支>
+```
+> 注意
+```shell
+git pull 或 git push 后续格式都是基于 <source>:<target> 的格式，也就是 <源变更分支>:<目标变更分支>
+```
+
