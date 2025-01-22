@@ -7,6 +7,7 @@ git clone <仓库地址>
 
 ## 设置你的账户信息
 ```gitignore
+git config --global credential.helper store
 git config --global user.email "<email>"
 git config --global user.name "<name>"
 ```
