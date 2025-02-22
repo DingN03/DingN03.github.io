@@ -28,4 +28,3 @@ git push origin <本地分支>:<远程分支>
 ```shell
 git pull 或 git push 后续格式都是基于 <source>:<target> 的格式，也就是 <源变更分支>:<目标变更分支>
 ```
-
