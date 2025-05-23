@@ -56,3 +56,10 @@
     适用于 Linux 的 Windows 子系统分发:
     Develop
    ```
+6. 移除linux实例
+```bash
+# 查看linux实例列表
+wsl -l -v
+# 移除处于 Stopped 状态的实例
+wsl --unregister <实例名>
+```
