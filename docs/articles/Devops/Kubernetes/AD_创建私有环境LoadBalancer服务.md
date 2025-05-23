@@ -25,8 +25,9 @@ cilium config view | grep -i bgp
 cilium config set enable-bgp-control-plane=true
 ```
 如果没有 `enable-bgp-control-plane` 说明cilium没有安装 bgp控制平面，按以下命令重新安装即可（注意你的 cilium 版本）：
+> 新增两项参数，便于后续使用cilium的 gateway
 ```shell
-cilium install --version 1.16.5 --set bgpControlPlane.enabled=true
+cilium install --version 1.16.5 --set bgpControlPlane.enabled=true --set kubeProxyReplacement=true --set gatewayAPI.enabled=true
 ```
 
 ## 设置 cilium 在集群中的 bgp 配置
@@ -83,10 +84,10 @@ metadata:
 spec:
   nodeSelector:
     matchLabels:
-      bgp-policy: a
+      bgp-policy: a # 注意，这里带有指定 label 的主机才会存在
   bgpInstances:
-    - name: "instance-64520"
-      localASN: 64520
+    - name: "instance-64521"
+      localASN: 64521
       peers:
         - name: "peer-64520"
           peerASN: 64520
@@ -99,6 +100,8 @@ spec:
 ## 配置 mikrotik 路由器 bgp协议
 打开路由器 terminal 命令端口,输入如下：
 ```shell
+# 注意,如果使用ebgp时请区分 AS
+# add address-families=ip as=64520 disabled=no local.role=ebgp name=PEER_TO_K3S_WN_1 output.default-originate=always remote.address=192.168.1.77 routing-table=main 
 add address-families=ip as=64520 disabled=no local.role=ibgp name=PEER_TO_K3S_WN_1 output.default-originate=always remote.address=192.168.1.60 routing-table=main
 add address-families=ip as=64520 disabled=no local.role=ibgp name=PEER_TO_K3S_WN_2 output.default-originate=always remote.address=192.168.1.61 routing-table=main
 add address-families=ip as=64520 disabled=no local.role=ibgp name=PEER_TO_K3S_WN_3 output.default-originate=always remote.address=192.168.1.62 routing-table=main
